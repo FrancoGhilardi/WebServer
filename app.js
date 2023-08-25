@@ -4,8 +4,18 @@ const app = express();
 const port = 8080;
 const __dirname = getDirName(import.meta.url);
 
+//#region HANDLEBARS
+app.set("view engine", "hbs");
+//#endregion
+
 //#region SERVIR CONTENIDO ESTATICO
 app.use(express.static("public"));
+//#endregion
+
+//#region GET RENDER HOME
+app.get("/", (req, res) => {
+  res.render("home");
+});
 //#endregion
 
 //#region GET PAGE GENERIC
