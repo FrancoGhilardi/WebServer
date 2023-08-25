@@ -1,9 +1,10 @@
 import express from "express";
 import { getDirName } from "./helpers/helpers.js";
 import hbs from "hbs";
+import "dotenv/config.js";
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT;
 const __dirname = getDirName(import.meta.url);
 
 //#region HANDLEBARS
@@ -43,5 +44,7 @@ app.get("/elements", (req, res) => {
 //#endregion
 
 //#region PORT
-app.listen(port);
+app.listen(port, () => {
+  console.log(`PUERTO: ${port}`);
+});
 //#endregion
