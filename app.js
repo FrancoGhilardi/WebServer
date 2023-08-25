@@ -14,7 +14,10 @@ app.use(express.static("public"));
 
 //#region GET RENDER HOME
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", {
+    name: "This is Road Trip",
+    title: "Renderer Test",
+  });
 });
 //#endregion
 
