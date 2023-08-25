@@ -1,12 +1,25 @@
-import * as http from "http";
-
+import express from "express";
+import { getDirName } from "./helpers/helpers.js";
+const app = express();
 const port = 8080;
+const __dirname = getDirName(import.meta.url);
 
-http
-  .createServer((req, res) => {
-    res.write("hello world");
-    res.end();
-  })
-  .listen(port);
+//#region SERVIR CONTENIDO ESTATICO
+app.use(express.static("public"));
+//#endregion
 
-console.log(`Escuchando el puerto ${port}`);
+//#region GET PAGE GENERIC
+app.get("/generic", (req, res) => {
+  res.sendFile(__dirname + "/public/generic.html");
+});
+//#endregion
+
+//#region GET PAGE GENERIC
+app.get("/elements", (req, res) => {
+  res.sendFile(__dirname + "/public/elements.html");
+});
+//#endregion
+
+//#region PORT
+app.listen(port);
+//#endregion
